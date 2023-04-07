@@ -12,9 +12,9 @@ def solution(p: float, x: np.array) -> tuple:
     # Не меняйте название функции и её аргументы
     alpha = 1 - p
     time = 8
-    aс = (x - (1/2 - np.exp(1))) * 2/ time**2
+    a = (x - (1/2 - np.exp(1)))*2 / time**2
 
-    lower = aс.mean() - np.sqrt(np.var(ac)) * norm.ppf(1 - alpha / 2) / np.sqrt(len(ac))
-    upper = ac.mean() - np.sqrt(np.var(ac)) * norm.ppf(alpha / 2) / np.sqrt(len(ac))
+    lower = a.mean() - np.sqrt(np.var(a)) * norm.ppf(1 - alpha / 2) / np.sqrt(len(a))
+    upper = a.mean() - np.sqrt(np.var(a)) * norm.ppf(    alpha / 2) / np.sqrt(len(a))
 
     return (lower, upper)
