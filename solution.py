@@ -1,20 +1,18 @@
 import pandas as pd
 import numpy as np
 
-from scipy.stats import norm
+from scipy.stats import gamma
 
 
-chat_id = 891686040 # Ваш chat ID, не меняйте название переменной
+chat_id = 891686040
 
 def solution(p: float, x: np.array) -> tuple:
-    # Измените код этой функции
-    # Это будет вашим решением
-    # Не меняйте название функции и её аргументы
     alpha = 1 - p
     time = 8
-    a = (x - (1/2 - np.exp(1)))*2 / time**2
+    n = len(x)
+    loc = np.sum(x)
 
-    lower = a.mean() - np.sqrt(np.var(a)) * norm.ppf(1 - alpha / 2) / np.sqrt(len(a))
-    upper = a.mean() - np.sqrt(np.var(a)) * norm.ppf(    alpha / 2) / np.sqrt(len(a))
+    lower = ((loc + gamma.ppf(alpha/2, a=n)) / n - 1/2) * 2 / time ** 2
+    upper = ((loc + gamma.ppf(1 - alpha/2, a=n)) / n - 1/2) * 2 / time ** 2
 
     return (lower, upper)
